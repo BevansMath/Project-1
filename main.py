@@ -10,10 +10,15 @@ def get_Reddit():
 
 requests.get(base_url)
 print(status)
-reddit = praw.Reddit(client_id='client_id', client_secret='client_secret',
-                username='username'
-                password='password'
-                user_agent='my user agent')
+
+# credentials
+with open('credentials.json', 'r') as f:
+    credentials = json.load(f)
+
+# create reddit wrapper api
+reddit = praw.Reddit(client_id=credentials['client_id'],
+                     client_secret=credentials['client_secret'],
+                     user_agent='my user agent')
 
 for submission in reddit.subreddit('news').hot(limit=10): #testing if I have authorization to scrape
     print(submission.title)
