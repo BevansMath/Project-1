@@ -1,4 +1,5 @@
 import requests
+import praw
 
 def get_Reddit():
     base_url = r'https://www.reddit.com/'
@@ -9,10 +10,12 @@ def get_Reddit():
 
 requests.get(base_url)
 print(status)
+reddit = praw.Reddit(client_id='client_id', client_secret='client_secret',
+                username='username'
+                password='password'
+                user_agent='my user agent')
 
-if r.status_code==401:
-    print("401 Unauthorized Request!")
-elif r.status_code==404:
-    print("404 Request not found!")
-else:
-    print("200 OK!")
+for submission in reddit.subreddit('news').hot(limit=10): #testing if I have authorization to scrape
+    print(submission.title)
+    print("----------------")
+
