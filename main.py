@@ -1,5 +1,6 @@
 import requests
 import praw
+import json
 
 def get_Reddit():
     base_url = r'https://www.reddit.com/'
@@ -8,8 +9,8 @@ def get_Reddit():
     r = requests.post(base_url + 'api/v1/access_token', data=data, headers={'user-agent': 'APP-NAME by REDDIT-USERNAME'}, auth=auth)
     status = r.status_code
 
-requests.get(base_url)
-print(status)
+#requests.get(base_url)
+#print(status)
 
 # credentials
 with open('credentials.json', 'r') as f:
